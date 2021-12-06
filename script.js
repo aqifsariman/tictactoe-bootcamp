@@ -1,19 +1,19 @@
-const board = [
+let board = [
   ["", "", ""],
   ["", "", ""],
   ["", "", ""],
 ]; // keep data about the game in a 2-D array
 let boardElement; // the element that contains the rows and squares
 let boardContainer; // the element that contains the entire board // we can empty it out for convenience
+
 let currentPlayer = "X"; // current player global starts at X
 const gameMessage = document.querySelector(".game-message");
+const squareContainer = document.querySelectorAll(".square");
 
 // completely rebuilds the entire board every time there's a click
 const buildBoard = (board) => {
   // start with an empty container
   boardContainer.innerHTML = "";
-  boardElement = document.createElement("div");
-  boardElement.classList.add("board");
 
   for (let i = 0; i < board.length; i += 1) {
     // move through the board data array and create the current state of the board
@@ -49,6 +49,8 @@ const buildBoard = (board) => {
 // create the board container element and put it on the screen
 const initGame = () => {
   boardContainer = document.createElement("div");
+  boardContainer.classList.add("board");
+
   document.body.appendChild(boardContainer);
 
   // build the board - right now it's empty
@@ -76,6 +78,15 @@ const squareClick = (column, row) => {
 
     if (checkWin(board) === true) {
       gameMessage.innerHTML = `${currentPlayer} player wins!`;
+      setTimeout(() => {
+        board = [
+          ["", "", ""],
+          ["", "", ""],
+          ["", "", ""],
+        ];
+        gameMessage.innerHTML = "CLICK A SQUARE TO BEGIN";
+        buildBoard(board);
+      }, 1000);
     } else {
       // change the player
       togglePlayer();
@@ -94,6 +105,16 @@ const squareClick = (column, row) => {
       board[2][2] !== ""
     ) {
       gameMessage.innerHTML = "It's a draw!";
+      setTimeout(() => {
+        board = [
+          ["", "", ""],
+          ["", "", ""],
+          ["", "", ""],
+        ];
+        gameMessage.innerHTML = "CLICK A SQUARE TO BEGIN";
+
+        buildBoard(board);
+      }, 1000);
     }
     // refresh the screen with a new board
     // according to the array that was just changed
@@ -164,3 +185,5 @@ const checkWin = (board) => {
 };
 
 initGame();
+
+/* CLICK A SQUARE TO BEGIN */
