@@ -60,10 +60,10 @@ const initGame = () => {
 // switch the global values from one player to the next
 const togglePlayer = () => {
   if (currentPlayer === "X") {
-    gameMessage.innerText = "Player 2's turn";
+    gameMessage.innerText = `${currentPlayer}'s turn.`;
     currentPlayer = "O";
   } else if (currentPlayer === "O") {
-    gameMessage.innerText = "Player 1's turn";
+    gameMessage.innerText = `${currentPlayer}'s turn.`;
     currentPlayer = "X";
   }
 };
@@ -184,6 +184,36 @@ const checkWin = (board) => {
   return false;
 };
 
-initGame();
+
+const startOfGame = () => {
+  // creating form to enter username
+  let form = document.createElement("div");
+  form.id = "form";
+  let name = document.createElement("input");
+  name.id = "username";
+  var submit = document.createElement("button");
+  submit.innerHTML = "Submit";
+  submit.id = "submit";
+  form.appendChild(name);
+  form.appendChild(submit);
+  document.body.appendChild(form);
+  submit.addEventListener("click", () => {
+    if (name.value !== "" && typeof name.value === "string" && typeof name.value !=="number") {
+      let userName = name.value;
+      gameMessage.innerHTML = `Welcome ${userName}! Plese input your desired board size.`;
+      name.value = "";
+    } else if (name.value !== "" && typeof name.value === "number") {
+      let userChoice = name.value;
+      gameMessage.innerHTML = `You have chosen a ${userChoice}x${userChoice} board size for your game.`;
+      name.value = "";
+	  initGame();
+    } else if (name.value === "") {
+      gameMessage.innerHTML = "Please enter name. Field cannot be empty.";
+    }
+  });
+};
+
+startOfGame(); 
+
 
 /* CLICK A SQUARE TO BEGIN */

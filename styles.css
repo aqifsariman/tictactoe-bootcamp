@@ -16,7 +16,7 @@ h1 {
   font-family: monospace;
   font-size: 80px;
   color: rgba(231, 94, 40, 0.897);
-  margin-left: 33%;
+  margin-left: 23%;
 }
 
 h2 {
@@ -31,4 +31,8 @@ h2 {
 .board {
   margin-left: 42%;
   margin-top: 2%;
+}
+
+#form{
+	margin-left: 38%;
 }
