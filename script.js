@@ -198,11 +198,12 @@ const startOfGame = () => {
   form.appendChild(submit);
   document.body.appendChild(form);
   submit.addEventListener("click", () => {
-    if (name.value !== "" && typeof name.value === "string" && typeof name.value !=="number") {
+    if (name.value !== "" && typeof name.value === "string" && typeof name.value !== "number") {
+		console.log(name.value !== "" && typeof name.value === "string" && typeof name.value !== "number")
       let userName = name.value;
       gameMessage.innerHTML = `Welcome ${userName}! Plese input your desired board size.`;
       name.value = "";
-    } else if (name.value !== "" && typeof name.value === "number") {
+    } else if (name.value !== "" && typeof name.value === "number" && typeof name.value !== "string") {
       let userChoice = name.value;
       gameMessage.innerHTML = `You have chosen a ${userChoice}x${userChoice} board size for your game.`;
       name.value = "";
